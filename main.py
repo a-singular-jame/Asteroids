@@ -60,6 +60,7 @@ def main():
             if asteroid.collision(player):
                 print("Game over!")
                 print(f"Score: {score}")
+                print(f"Rank:{RANK[score // RANK_GAP]}")
                 return
         screen.fill("black")
         for obj in drawable:
