@@ -14,3 +14,4 @@ PLAYER_SHOOT_COOLDOWN = 0.3
 RANK = ["F", "D", "C", "B", "A", "S"]
 RANK_GAP = 200
 PLAYER_LIVES = 3
+INVULN_TIME = 3 # seconds

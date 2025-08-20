@@ -34,6 +34,7 @@ def main():
     asteroid_field = AsteroidField()
     score = 0
     lives = PLAYER_LIVES
+    invuln = 0
 
     # ------------------------------- #
 
@@ -53,25 +54,34 @@ def main():
                 return
         updatable.update(dt)
         for asteroid in asteroids:
+
             for bullet in shots:
                 if bullet.collision(asteroid):
                     score += int((asteroid.radius / ASTEROID_MIN_RADIUS) * 4)
                     asteroid.split()
                     bullet.kill()
+
             if asteroid.collision(player):
-                if lives > 1:
-                    player.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-                    lives -= 1
-                    print(f"You died! Lives left: {lives}")
+                if invuln <= 0:
+                    if lives > 1:
+                        player.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+                        lives -= 1
+                        print(f"You died! Lives left: {lives}")
+                        invuln = INVULN_TIME
+                    else:
+                        print("Game over!")
+                        print(f"Score: {score}")
+                        print(f"Rank:{RANK[score // RANK_GAP]}")
+                        return
                 else:
-                    print("Game over!")
-                    print(f"Score: {score}")
-                    print(f"Rank:{RANK[score // RANK_GAP]}")
-                    return
+                    pass
         screen.fill("black")
         for obj in drawable:
             obj.draw(screen)
         pygame.display.flip()
+
+        if invuln > 0:
+            invuln -= dt
 
         dt = clock.tick(60) / 1000
     
