@@ -20,7 +20,7 @@ def main():
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
 
-    Player.containers = (updatable, drawable)
+    Player.containers = (updatable)
     Asteroid.containers = (updatable, drawable, asteroids)
     AsteroidField.containers = (updatable)
     Shot.containers = (updatable, drawable, shots)
@@ -76,12 +76,16 @@ def main():
                 else:
                     pass
         screen.fill("black")
-        for obj in drawable:
-            obj.draw(screen)
-        pygame.display.flip()
 
         if invuln > 0:
             invuln -= dt
+            player.draw(screen, "cyan")
+        else:
+            player.draw(screen, "white")
+
+        for obj in drawable:
+            obj.draw(screen, "white")
+        pygame.display.flip()
 
         dt = clock.tick(60) / 1000
     

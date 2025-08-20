@@ -17,8 +17,8 @@ class Player(CircleShape):
         c = self.position - forward * self.radius + right
         return [a, b, c]
 
-    def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), 2)
+    def draw(self, screen, colour):
+        pygame.draw.polygon(screen, colour, self.triangle(), 2)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -59,9 +59,9 @@ class   Shot(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
 
-    def draw(self, screen):
+    def draw(self, screen, colour):
         pos = tuple(self.position)
-        pygame.draw.circle(screen, "white", pos, self.radius, 2)
+        pygame.draw.circle(screen, colour, pos, self.radius, 2)
 
     def update(self, dt):
         self.position += (self.velocity * dt)
