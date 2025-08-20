@@ -12,4 +12,5 @@ SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
 PLAYER_SHOOT_COOLDOWN = 0.3
 RANK = ["F", "D", "C", "B", "A", "S"]
-RANK_GAP = 200 # score difference between each rank
+RANK_GAP = 200
+PLAYER_LIVES = 3

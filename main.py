@@ -33,6 +33,7 @@ def main():
     player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
     asteroid_field = AsteroidField()
     score = 0
+    lives = PLAYER_LIVES
 
     # ------------------------------- #
 
@@ -58,10 +59,15 @@ def main():
                     asteroid.split()
                     bullet.kill()
             if asteroid.collision(player):
-                print("Game over!")
-                print(f"Score: {score}")
-                print(f"Rank:{RANK[score // RANK_GAP]}")
-                return
+                if lives > 1:
+                    player.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+                    lives -= 1
+                    print(f"You died! Lives left: {lives}")
+                else:
+                    print("Game over!")
+                    print(f"Score: {score}")
+                    print(f"Rank:{RANK[score // RANK_GAP]}")
+                    return
         screen.fill("black")
         for obj in drawable:
             obj.draw(screen)
