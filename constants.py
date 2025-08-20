@@ -11,7 +11,24 @@ PLAYER_SPEED = 200
 SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
 PLAYER_SHOOT_COOLDOWN = 0.3
-RANK = ["F", "D", "C", "B", "A", "A", "A", "A+","A+", "A+", "S"]
-RANK_GAP = 200
 PLAYER_LIVES = 3
 INVULN_TIME = 3 # seconds
+SCORE_MULTIPLIER = 5
+
+# ---------- RANKS ---------- #
+def SCORE_TO_RANK(score):
+    if score >= 5000:
+        return "S"
+    elif score >= 2500:
+        return "A+"
+    elif score >= 1000:
+        return "A"
+    elif score >= 500:
+        return "B"
+    elif score >= 250:
+        return "C"
+    elif score >= 100:
+        return "D"
+    elif score >= 0:
+        return "F"
+    

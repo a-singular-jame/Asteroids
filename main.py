@@ -57,7 +57,7 @@ def main():
 
             for bullet in shots:
                 if bullet.collision(asteroid):
-                    score += int((asteroid.radius / ASTEROID_MIN_RADIUS) * 4)
+                    score += int((asteroid.radius / ASTEROID_MIN_RADIUS) * SCORE_MULTIPLIER)
                     asteroid.split()
                     bullet.kill()
 
@@ -71,7 +71,7 @@ def main():
                     else:
                         print("Game over!")
                         print(f"Score: {score}")
-                        print(f"Rank:{RANK[score // RANK_GAP]}")
+                        print(f"Rank:{SCORE_TO_RANK(score)}")
                         return
                 else:
                     pass
